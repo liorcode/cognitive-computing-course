@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 x  = 5
 y  = 140
 
-titles = ['Regular Spiking', 'Chattering', 'Fast spiking']
-a  = [0.02, 0.02, 0.1]
-b  = [0.2 , 0.2 , 0.2]
-c  = [-65, -50  , -65]
-d  = [8   , 2   , 2  ]
+titles = ['Regular Spiking', 'Chattering', 'Fast spiking', 'Intrinsically bursting', 'Low-threshold spiking']
+a  = [0.02, 0.02, 0.1, 0.02, 0.02]
+b  = [0.2 , 0.2 , 0.2, 0.2, 0.25]
+c  = [-65, -50  , -65, -55, -65]
+d  = [8   , 2   , 2, 4, 2]
 
 v0 = -70         # Resting potential        [mV]
 T       = 200    # Simulation time          [mSec]
@@ -41,12 +41,12 @@ for exp in range(len(a)):
             trace[0,i] = v
             trace[1,i] = u
 
-plt.figure(figsize=(10,5))
-plt.title('Izhikevich Model: {}'.format(titles[exp]), fontsize=15)
-plt.ylabel('Membrane Potential (mV)', fontsize=15)
-plt.xlabel('Time (msec)', fontsize=15)
-plt.plot(time, trace[0], linewidth=2, label = 'Vm')
-plt.plot(time, trace[1], linewidth=2, label = 'Recovery', color='green')
-plt.plot(time, stim + v0, label = 'Stimuli (Scaled)', color='sandybrown', linewidth=2)
-plt.legend(loc=1)
-plt.show()
+    plt.figure(figsize=(10,5))
+    plt.title('Izhikevich Model: {}'.format(titles[exp]), fontsize=15)
+    plt.ylabel('Membrane Potential (mV)', fontsize=15)
+    plt.xlabel('Time (msec)', fontsize=15)
+    plt.plot(time, trace[0], linewidth=2, label = 'Vm')
+    plt.plot(time, trace[1], linewidth=2, label = 'Recovery', color='green')
+    plt.plot(time, stim + v0, label = 'Stimuli (Scaled)', color='sandybrown', linewidth=2)
+    plt.legend(loc=1)
+    plt.show()
