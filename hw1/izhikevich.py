@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 x  = 5
 y  = 140
 
-titles = ['Regular Spiking', 'Chattering', 'Fast spiking', 'Intrinsically bursting', 'Low-threshold spiking', 'Thalamo-Cortical Left', 'Thalamo-Cortical Right']
-a  = [0.02, 0.02, 0.1, 0.02, 0.02, 0.02, 0.02]
-b  = [0.2 , 0.2 , 0.2, 0.2, 0.25, 0.25, 0.25]
-c  = [-65, -50  , -65, -55, -65, -65, -65]
-d  = [8   , 2   , 2, 4, 2, 0.05, 0.05, 0.05]
+titles = ['Regular Spiking', 'Chattering', 'Fast spiking', 'Intrinsically bursting', 'Low-threshold spiking', 'Thalamo-Cortical Left', 'Thalamo-Cortical Right', 'Resonator']
+a  = [0.02, 0.02, 0.1, 0.02, 0.02, 0.02, 0.02, 0.1]
+b  = [0.2 , 0.2 , 0.2, 0.2, 0.25, 0.25, 0.25, 0.26]
+c  = [-65, -50  , -65, -55, -65, -65, -65, -65]
+d  = [8   , 2   , 2, 4, 2, 0.05, 0.05, 0.05, 2]
 
 v0 = [-70, -70, -70, -70, -70, -63, -87, -70] # Resting potential        [mV]
 T       = 200                                 # Simulation time          [mSec]
