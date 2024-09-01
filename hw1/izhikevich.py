@@ -12,7 +12,7 @@ d  = [8   , 2   , 2, 4, 2, 0.05, 0.05, 0.05, 2]
 
 v0 = [-70, -70, -70, -70, -70, -63, -87, -70] # Resting potential        [mV]
 T       = 200                                 # Simulation time          [mSec]
-dt      = 0.1                                 # Simulation time interval [mSec]
+dt      = 0.25                                 # Simulation time interval [mSec]
 
 time    = np.arange(0, T + dt, dt)  # Time array
 
@@ -20,22 +20,34 @@ time    = np.arange(0, T + dt, dt)  # Time array
 stim = np.zeros(len(time))
 for i,t in enumerate(stim):
     if i > 20:
-        stim[i] = 10
+        stim[i] = 15
 
 # Simulation
 
 trace = np.zeros((2,len(time))) # Tracing du and dv
 
 for exp in range(len(a)):
-    v  = c[exp]
+    v  = v0[exp]
     u  = b[exp]*v
     spikes = []
     if titles[exp] == 'Thalamo-Cortical Left':
-        stim[:20] = -1
-        stim[20:] = 2
+        stim[:] = 0
+        stim[100:] += 2
     if titles[exp] == 'Thalamo-Cortical Right':
-        stim[:20] = -4
-        stim[20:] = 1
+        stim[:] = -4
+        stim[20:] += 3
+    if titles[exp] == 'Resonator':
+        stim[:] = 0.1
+        stim[400:420] = 2
+        # stim[:100] = -1
+        # stim[100:200] = -0.6
+        # stim[200:300] = -1
+        # stim[300:400] = -0.6
+        # stim[400:420] = 0
+        # stim[420:440] = 0.3
+        # stim[440:460] = 0.6
+        # stim[460:] = 1
+
     for i, j in enumerate(stim):
         v += dt * (0.04*v**2 + x*v + y - u + stim[i])
         u += dt * a[exp]*(b[exp]*v-u)
