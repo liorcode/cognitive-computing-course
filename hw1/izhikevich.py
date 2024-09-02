@@ -4,13 +4,13 @@ import matplotlib.pyplot as plt
 x  = 5
 y  = 140
 
-titles = ['Regular Spiking', 'Chattering', 'Fast spiking', 'Intrinsically bursting', 'Low-threshold spiking', 'Thalamo-Cortical Left', 'Thalamo-Cortical Right', 'Resonator']
+models = ['Regular Spiking', 'Chattering', 'Fast spiking', 'Intrinsically bursting', 'Low-threshold spiking', 'Thalamo-Cortical Tonic', 'Thalamo-Cortical Burst', 'Resonator']
 a  = [0.02, 0.02, 0.1, 0.02, 0.02, 0.02, 0.02, 0.1]
 b  = [0.2 , 0.2 , 0.2, 0.2, 0.25, 0.25, 0.25, 0.26]
 c  = [-65, -50  , -65, -55, -65, -65, -65, -65]
 d  = [8   , 2   , 2, 4, 2, 0.05, 0.05, 0.05, 2]
 
-v0 = [-70, -70, -70, -70, -70, -63, -87, -70] # Resting potential        [mV]
+v0 = [-70, -70, -70, -70, -70, -63, -87, -60] # Resting potential        [mV]
 T       = 200                                 # Simulation time          [mSec]
 dt      = 0.25                                 # Simulation time interval [mSec]
 
@@ -30,23 +30,15 @@ for exp in range(len(a)):
     v  = v0[exp]
     u  = b[exp]*v
     spikes = []
-    if titles[exp] == 'Thalamo-Cortical Left':
+    if models[exp] == 'Thalamo-Cortical Tonic':
         stim[:] = 0
         stim[100:] += 2
-    if titles[exp] == 'Thalamo-Cortical Right':
+    if models[exp] == 'Thalamo-Cortical Burst':
         stim[:] = -4
         stim[20:] += 3
-    if titles[exp] == 'Resonator':
-        stim[:] = 0.1
-        stim[400:420] = 2
-        # stim[:100] = -1
-        # stim[100:200] = -0.6
-        # stim[200:300] = -1
-        # stim[300:400] = -0.6
-        # stim[400:420] = 0
-        # stim[420:440] = 0.3
-        # stim[440:460] = 0.6
-        # stim[460:] = 1
+    if models[exp] == 'Resonator':
+        stim[:] = 0.25
+        stim[400:420] = 3
 
     for i, j in enumerate(stim):
         v += dt * (0.04*v**2 + x*v + y - u + stim[i])
@@ -60,7 +52,7 @@ for exp in range(len(a)):
             trace[1,i] = u
 
     plt.figure(figsize=(10,5))
-    plt.title('Izhikevich Model: {}'.format(titles[exp]), fontsize=15)
+    plt.title('Izhikevich Model: {}'.format(models[exp]), fontsize=15)
     plt.ylabel('Membrane Potential (mV)', fontsize=15)
     plt.xlabel('Time (msec)', fontsize=15)
     plt.plot(time, trace[0], linewidth=2, label = 'Vm')
