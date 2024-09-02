@@ -5,10 +5,10 @@ x  = 5
 y  = 140
 
 models = ['Regular Spiking', 'Chattering', 'Fast spiking', 'Intrinsically bursting', 'Low-threshold spiking', 'Thalamo-Cortical Tonic', 'Thalamo-Cortical Burst', 'Resonator']
-a  = [0.02, 0.02, 0.1, 0.02, 0.02, 0.02, 0.02, 0.1]
-b  = [0.2 , 0.2 , 0.2, 0.2, 0.25, 0.25, 0.25, 0.26]
-c  = [-65, -50  , -65, -55, -65, -65, -65, -65]
-d  = [8   , 2   , 2, 4, 2, 0.05, 0.05, 0.05, 2]
+a  = [0.02,     0.02,   0.1,    0.02,   0.02,   0.02,   0.02,   0.1]
+b  = [0.2,      0.2,    0.2,    0.2,    0.25,   0.25,   0.25,   0.26]
+c  = [-65,      -50,    -65,    -55,    -65,    -65,    -65,    -65]
+d  = [8,        2,      2,      4,      2,      0.05,   0.05,   2]
 
 v0 = [-70, -70, -70, -70, -70, -63, -87, -60] # Resting potential        [mV]
 T       = 200                                 # Simulation time          [mSec]
@@ -32,10 +32,10 @@ for exp in range(len(a)):
     spikes = []
     if models[exp] == 'Thalamo-Cortical Tonic':
         stim[:] = 0
-        stim[100:] += 2
+        stim[60:] = 1
     if models[exp] == 'Thalamo-Cortical Burst':
-        stim[:] = -4
-        stim[20:] += 3
+        stim[:] = -1
+        stim[160:] = 0.5
     if models[exp] == 'Resonator':
         stim[:] = 0.25
         stim[400:420] = 3
