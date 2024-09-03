@@ -35,7 +35,7 @@ for exp in range(len(a)):
         stim[60:] = 1
     if models[exp] == 'Thalamo-Cortical Burst':
         stim[:] = -1
-        stim[160:] = 0.5
+        stim[60:] = 0.5
     if models[exp] == 'Resonator':
         stim[:] = 0.25
         stim[400:420] = 3
